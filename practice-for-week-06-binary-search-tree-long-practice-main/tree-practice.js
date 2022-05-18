@@ -127,7 +127,7 @@ function countNodes (rootNode) {
     rootNode.nodeCount++;
     if (current.left) {
       stack.push(current.left);
-    } 
+    }
     if (current.right) {
       stack.push(current.right);
     }
@@ -158,10 +158,44 @@ function balancedTree (rootNode) {
 
 function getParentNode (rootNode, target) {
   // Your code here
+  if (rootNode.val === target) return null;
+
+  const stack = [rootNode];
+  while( stack.length){
+  let current = stack.pop()
+
+  if(current.left && current.left.val === target){
+    return current
+  }else if (current.left) stack.push(current.left)
+
+  if (current.right && current.right.val === target){
+    return current
+  } else if (current.right) stack.push(current.right)
+
+  }
+  return undefined
+
+
 }
 
 function inOrderPredecessor (rootNode, target) {
   // Your code here
+  let newArray =[]
+  function rec (rootNode){
+    if (rootNode) {
+    rec(rootNode.left);
+    newArray.push(rootNode.val)
+    rec(rootNode.right);
+    }
+  }
+  rec(rootNode)
+  console.log(newArray)
+  if (newArray[0] === target) return null
+  if (newArray.includes(target)){
+    console.log(newArray)
+    return newArray[newArray.indexOf(target)-1]
+  } else return undefined
+
 }
 
 
