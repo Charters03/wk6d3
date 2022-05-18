@@ -25,32 +25,72 @@ function findMinBT (rootNode) {
 
     if (rootNode.left) {
       min = Math.min(min, findMinBT(rootNode.left))
-    } 
-    
+    }
+
     if (rootNode.right) {
       min = Math.min(min, findMinBT(rootNode.right))
     }
 
     return min;
     }
+    /*
+     const stack = [rootNode];
+    let min = Infinity;
+​
+    while (stack.length) {
+        const current = stack.pop();
+​
+        min = Math.min(min, current.val);
+​
+        if (current.left) stack.push(current.left);
+        if (current.right) stack.push(current.right);
+    }
+​
+    return min;
+
+  */
 
 function findMaxBT (rootNode) {
   let max = rootNode.val;
 
     if (rootNode.left) {
       max = Math.max(max, findMaxBT(rootNode.left))
-    } 
-    
+    }
+
     if (rootNode.right) {
       max = Math.max(max, findMaxBT(rootNode.right))
     }
 
     return max;
+//     const stack = [rootNode];
+//     let max = -Infinity;
+// ​
+//     while (stack.length) {
+//         const current = stack.pop();
+// ​
+//         max = Math.max(max, current.val);
+// ​
+//         if (current.left) stack.push(current.left);
+//         if (current.right) stack.push(current.right);
+//     }
+// ​
+//     return max;
     }
 
 
 function getHeight (rootNode) {
   // Your code here
+  if (!rootNode) return -1;
+
+  let leftHigh = getHeight(rootNode.left)
+  let rightHigh = getHeight(rootNode.right)
+  console.log(leftHigh , rightHigh)
+
+  if ( leftHigh > rightHigh){
+    return (leftHigh + 1 )
+  } else return (rightHigh + 1 )
+return 1 + Math.max(getHeight(rootNode.left), getHeight(rootNode.right))
+
 }
 
 function countNodes (rootNode) {
