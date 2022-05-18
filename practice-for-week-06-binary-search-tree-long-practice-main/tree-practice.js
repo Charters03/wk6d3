@@ -116,13 +116,44 @@ return 1 + Math.max(getHeight(rootNode.left), getHeight(rootNode.right))
 // ​
 //     return depth;
 // }
+}
 
 function countNodes (rootNode) {
-  // Your code here
+  const stack = [rootNode];
+  rootNode.nodeCount = 0;
+
+  while(stack.length) {
+    let current = stack.pop();
+    rootNode.nodeCount++;
+    if (current.left) {
+      stack.push(current.left);
+    } 
+    if (current.right) {
+      stack.push(current.right);
+    }
+  }
+  return rootNode.nodeCount;
 }
 
 function balancedTree (rootNode) {
-  // Your code here
+  const stack = [rootNode];
+    // rootNode.level = 0;
+    let rightLevel = 0;
+    let leftLevel = 0;
+    // let depth = 0;
+    while (stack.length) {
+        const current = stack.pop();
+        // depth = Math.max(depth, current.level);
+        if (current.left) {
+          leftLevel++;
+          stack.push(current.left);
+        }
+        if (current.right) {
+          rightLevel++;
+          stack.push(current.right);
+        }
+    }
+    return Math.abs(rightLevel - leftLevel) < 2;
 }
 
 function getParentNode (rootNode, target) {
