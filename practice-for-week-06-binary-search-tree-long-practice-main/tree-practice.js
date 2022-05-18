@@ -89,9 +89,33 @@ function getHeight (rootNode) {
   if ( leftHigh > rightHigh){
     return (leftHigh + 1 )
   } else return (rightHigh + 1 )
+
+
+  if(!rootNode.right && !rootNode.left) return 0;
 return 1 + Math.max(getHeight(rootNode.left), getHeight(rootNode.right))
 
-}
+// const stack = [rootNode];
+// ​
+//     rootNode.level = 0;
+//     let depth = 0;
+// ​
+//     while (stack.length) {
+//         const current = stack.pop();
+// ​
+//         depth = Math.max(depth, current.level);
+// ​
+//         if (current.left) {
+//             current.left.level = current.level + 1;
+//             stack.push(current.left);
+//         }
+//         if (current.right) {
+//             current.right.level = current.level + 1;
+//             stack.push(current.right);
+//         }
+//     }
+// ​
+//     return depth;
+// }
 
 function countNodes (rootNode) {
   // Your code here
